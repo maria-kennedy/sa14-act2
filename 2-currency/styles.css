@@ -1,17 +1,49 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #c1dfba; 
+    color: #095009; 
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #f8b9d4; /* Soft pink */
-    color: white;
-    border: none;
+h1 {
+    color: #095009; 
+}
+
+#converter {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9ffef; 
     border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+select, input[type="number"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #009900; 
+    color: #fff; 
+    border: none;
+    border-radius: 3px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #006600; 
+}
+
+#result {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ecffec;
+    border-radius: 5px;
 }
