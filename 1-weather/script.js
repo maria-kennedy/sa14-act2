@@ -1,3 +1,5 @@
+
+
 // event listener
 document.addEventListener('DOMContentLoaded', function () {
     //add const 
@@ -16,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // send data to display function
         .then(data => {
             displayWeather(data);
+            displayForecast(data.forecast.forecastDay);
         });
     });
 
@@ -27,22 +30,20 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('current-temp').textContent = 'Current temperature: ' + cW.temp_f + '°F';
         document.getElementById('current-condition').textContent = 'Current condition: ' + cW.condition.text;
         document.getElementById('current-humidity').textContent = 'Current humidity: ' + cW.humidity + '%';
+    }
 
-        // display 5-day forecast
-        const fD = document.getElementById('forecast-days');
-        fD.innerHTML = ''; // to clear prev data
-        
-        // loop to display 5 days
+    // 5 day forecast function
+    function displayForecast(forecast) {
+        const fC = document.getElementById('forecast-days');
+        fC.innerHTML = '';
+        // show high and low temps for next 5 days
         for (let i = 0; i < 5; i++) {
-            const fC = data.forecast.forecastDay[i];
-            const fItem = document.createElement("div");
-            fItem.classList.add('forecast-item');
-            fItem.innerHTML = `
-                <div>${fC.date}</div>
-                <div>${fC.day.condition.text}</div>
-            `;
-            fD.appendChild(fItem);
-        }   
+            const day = forecast[i];
+            const div = document.createElement('div');
+            div.textContent = day.date;
+            div.textContent = `High: ${day.day.maxTemp_f}°F, Low: ${day.day.minTemp_f}°F`;
+            fC.appendChild(div);
+        }
 
     }
 });
