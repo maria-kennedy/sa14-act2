@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Currency</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Currency Converter</h1>
+
+    <!-- need 3 inputs: from, to, amount -->
+    <form action="submit">
+        <!-- user can choose from a list of currencies -->
+        <label for="from">From currency:</label>
+        <select id="from" name="from">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="CAD">CAD</option>
+            <option value="AUD">AUD</option>
+        </select>
+
+        <!-- user can choose from a list of currencies to convert to-->
+        <label for="to">To currency:</label>
+        <select id="to" name="to">
+            
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="CAD">CAD</option>
+            <option value="AUD">AUD</option>
+        </select>
+
+        <!-- user can input the amount to convert -->
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" step="0.01" required>
+        
+        <!-- submit button -->
+        <button type="submit">Convert</button>
+    </form>
+
+    <!-- display the result -->
+    <div id="result"></div>
+
+
+    <script>
+        // const
+        const form = document.querySelector("form")
+
+        const resultDiv = document.querySelector("#result")
+        const myApiKey  = "73f8e735f5cfa29de5d1d481ed6e4d45"
+        const from = form.from.value;
+        const to = form.to.value;
+        const amount = form.amount.value;
+
+        // add an event listener to the form
+        document.addEventListener("submit", async (event) => {
+
+
+            // fetch the exchange rate
+            // const response = await fetch("https://api.exchangeratesapi.io/v1/latest?access_key=${myApiKey}")
+            // .then((response) => response.json())
+            // const data = await response.json();
+            // const rate = data.rates[to];
+
+            // calculate the amount
+            // const convertedAmount = (amount * rate).toFixed(2); //note2self: use toFixed() for rounding
+
+            // // display the result
+            // resultDiv.textContent = `${amount} ${from} is ${convertedAmount} ${to}`;
+        });
+    </script>
+</body>
+</html>

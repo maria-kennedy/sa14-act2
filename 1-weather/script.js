@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const city = input.value;
 
         // fetch data from weather api
-        fetch(`https://api.weatherapi.com/v1/current.json?key=${myApiKey}&q=${city}`)
+        fetch(`https://api.weatherapi.com/v1/current.json?key=${myApiKey}&q=${city}&days=5&aqi=no&alerts=no`)
         .then(response => response.json())
         // send data to display function
         .then(data => {
