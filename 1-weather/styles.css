@@ -1,0 +1,76 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #b5bcec; 
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h1 {
+    font-size: 30px;
+    color: #494949; 
+    text-shadow: 1px 1px 2px #fff; 
+  }
+  
+  #search-form {
+    display: flex;
+    margin-top: 20px;
+    gap: 10px;
+  }
+  
+  #city-input {
+    padding: 10px;
+    border: 2px solid #f8d9a5;
+    border-radius: 20px; 
+    font-size: 16px;
+  }
+  
+  #search-form button {
+    padding: 10px 20px;
+    background-color: #ffc8d9; 
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  #current-weather, #weather-forecast {
+    border: 2px solid #ffcfb5; 
+    border-radius: 20px; 
+    padding: 20px;
+    margin-top: 20px;
+    width: 50%;
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 20px;
+    color: #494949; 
+  }
+  
+  #current-weather div, #weather-forecast div {
+    margin-bottom: 10px;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  #current-weather div:nth-child(odd), #weather-forecast div:nth-child(odd) {
+    background-color: #fff; 
+  }
+  
+  #current-weather div:nth-child(even), #weather-forecast div:nth-child(even) {
+    background-color: #fde0dc; 
+  }
+  
+  #current-condition:after {
+    content: "☀️"; 
+    font-size: 20px;
+    color: #ffc107; 
+  }
+

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>User Registration Form</h1>
+    <form id="registration-form">
+
+        <!-- username -->
+        <p>Username (must be at least 6 characters long):</p>
+        <label for="username">Username:</label>
+        <input type="text" id="username" required><br><br>
+        <span id="username-error"></span><br>
+
+        <!-- email -->
+        <p>Email (must be in valid format):</p>
+        <label for="email">Email:</label>
+        <input type="email" id="email" required><br><br>
+        <span id="email-error"></span><br>
+        
+        <!-- password -->
+        <p>Password (must be at least 8 characters long and contain at least one number and one capital letter):</p>
+        <label for="password">Password:</label>
+        <input type="password" id="password" required><br><br>
+        <span id="password-error"></span><br>
+
+        <!-- submit button -->
+        <button type="submit">Register</button>
+        
+        <div id="success-message" style="display: none;">
+            <p>Registration successful!</p>
+        </div>
+        
+    </form>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // constants
+            const form = document.getElementById("registration-form");
+            const username = document.getElementById("username");
+            const email = document.getElementById("email");
+            const password = document.getElementById("password");
+
+
+            // event listener
+            form.addEventListener("submit", function(event) {
+                event.preventDefault();
+                // validate success with boolean
+                let success = true;
+
+                // username needs to be >= 6 char
+                if(username.value.length < 6) {
+                    document.getElementById("username-error").innerHTML = "Please enter valid username"; 
+                    success = false;
+                } else {
+                    document.getElementById("username-error").innerHTML = "";
+                }
+
+                // check if email contains @ and . -- use regex?
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if(!email.value.match(emailRegex)){
+                    document.getElementById("email-error").innerHTML = "Please enter valid email"; 
+                    success = false;
+                } else {
+                    document.getElementById("email-error").innerHTML = "";
+                }
+
+                // check if password must be >= 8 char, & contain >= 1 num and 1 capital letter
+                const passwordRegex = /^(?=.*[0-9])(?=.*[A-Z]).{8,}$/;
+                if(!password.value.match(passwordRegex)) {
+                    document.getElementById("password-error").innerHTML = "Please enter valid password"; 
+                    success = false;
+                } else {
+                    document.getElementById("password-error").innerHTML = "";
+                }
+                if(success) {
+                    document.getElementById("success-message").style.display = "block";  
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+

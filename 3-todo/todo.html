@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ToDo List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- make a container for form -->
+    <div class="container">
+        <h1>MY TO DO LIST:</h1>
+        <form id="todo-form">
+            <input type="text" id="task-item" placeholder="Add a new task">
+            <input type="text" id="task-details" placeholder="Task details">
+            <button type="submit">Add Task</button>
+        </form>
+        <!-- list of tasks, should be able to add and remove tasks -->
+        <ul id="task-list"></ul>
+    </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // constants
+        const form = document.getElementById("todo-form");
+        const input = document.getElementById("task-item");
+        const inputDetails = document.getElementById("task-details");
+        const list = document.getElementById("task-list");
+
+        // event listener
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+            const task = input.value;
+            const taskDetails = inputDetails.value;
+            // check if task is empty, else send to addTask function
+            if(task != "") { 
+                addTask(task, taskDetails);
+                input.value = "";
+                inputDetails.value = "";
+            }
+        });
+
+        // addTask function
+        function addTask(task, taskDetails) {
+            // create list item
+            const li = document.createElement("li");
+            // each task should have text, add, delete 
+            li.innerHTML= `
+                <span id="task">${task}:</span>
+                <span id="details">${taskDetails}</span>
+                <button class="edit">Edit</button>
+                <button class="delete">Delete</button>
+            `;
+            // append to list
+            list.appendChild(li);
+
+            // create event listeners for edit and delete
+            li.querySelector(".edit").addEventListener("click", function() {
+                editTask(li);
+            });
+            li.querySelector(".delete").addEventListener("click", function() {
+                list.removeChild(li);
+            });
+        }
+
+        // editTask function
+        function editTask(li) {
+            const spanTask = li.querySelector("#task");
+            const spanDetails = li.querySelector("#details");
+
+            const inputTask = document.createElement("input");
+            inputTask.type = "text";
+            inputTask.value = spanTask.textContent.trim();
+
+            const inputDetails = document.createElement("input");
+            inputDetails.type = "text";
+            inputDetails.value = spanDetails.textContent.trim();
+
+            // Replace span with input fields
+            li.replaceChild(inputTask, spanTask);
+            li.replaceChild(inputDetails, spanDetails);
+
+            inputTask.focus();
+
+            // Add event listener for saving changes when input loses focus
+            inputTask.addEventListener("blur", function() {
+                saveTask(li);
+            });
+
+            inputTask.addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {saveTask(li);}
+            });
+            inputDetails.addEventListener("blur", function() { saveTask(li);
+            });
+            inputDetails.addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {saveTask(li);}
+            });
+        }
+
+        // saveTask function
+        function saveTask(li) {
+            const inputTask = li.querySelector("input[type='text']");
+            const inputDetails = li.querySelectorAll("input[type='text']")[1];
+            const spanTask = document.createElement("span");
+            spanTask.textContent = inputTask.value;
+
+            const spanDetails = document.createElement("span");
+            spanDetails.textContent = inputDetails.value;
+
+            // Replace input fields with spans
+            li.replaceChild(spanTask, inputTask);
+            li.replaceChild(spanDetails, inputDetails);
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cat Animation</title>
+  <style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #fde0dc; 
+  }
+  #movable-div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffc8d9; 
+    padding: 15px 20px;
+    border-radius: 50px; 
+    font-size: 30px;
+    color: #604b78; 
+    transition: transform 0.7s ease-in-out;
+  }
+  #movable-div.active {
+    transform: translate(-50%, -50%) translateX(120vw); 
+  }
+  #move-button {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 20px; 
+    background-color: #ffd3b9; 
+    color: #484e56; 
+    cursor: pointer;
+  }
+  #move-button:hover { 
+    background-color: #ffc8d9; 
+  }
+  </style>
+</head>
+
+
+<body>
+  <div id="movable-div"> ฅ^•ﻌ•^ฅ </div>
+  <!-- <div id="movable-div"> &#x1F431 </div>    // included unicode version also in case symbols dont work-->
+  <button id="move-button">Move Kitty!</button>
+
+
+  <script>
+    const movableDiv = document.getElementById("movable-div");
+    const moveButton = document.getElementById("move-button");
+    let isActive = false;
+    // button event listener
+    moveButton.addEventListener("click", () => {
+        movableDiv.classList.toggle("active");
+        isActive = !isActive;
+        moveButton.textContent = isActive ? "Bring the Kitty Back!" : "Move Kitty!";
+    });
+
+  </script>
+
+</body>
+</html>
